@@ -29,7 +29,7 @@ Dokumen ini menetapkan standar kategori konten Instagram untuk akun Apple Store 
 |---|---|
 | Document | Apple Content Categories |
 | Document ID | APPLE-CONTENT-CATEGORIES |
-| Version | 2.0.0 |
+| Version | 2.1.0 |
 | Status | Approved baseline |
 | Language | Indonesian (category names remain English) |
 | Channel | Instagram |
@@ -455,8 +455,209 @@ Persentase ini merupakan rekomendasi editorial awal, bukan data resmi Apple. Ses
 |---|---|---|
 | 1.0.0 | Previous baseline | Tujuh kategori awal dan panduan content pillar |
 | 2.0.0 | 2026-11-15 | Standardisasi metadata, aturan klasifikasi, primary/secondary category, funnel mapping, format standar, editorial guidelines, planning schema, dan referensi resmi |
+| 2.1.0 | 2026-11-15 | Penambahan Global Brand Foundation, tujuh Category Visual Identity, Creative Direction, Visual Production Guidelines, dan Visual Quality Control |
+
+
+## 13. Visual Identity System
+
+Sistem visual menggunakan pendekatan **One Brand, Seven Visual Identities**: seluruh konten tetap berada dalam satu identitas brand, tetapi setiap kategori memiliki karakter visual yang konsisten dan mudah dikenali.
+
+### 13.1 Global Brand Foundation
+
+Elemen berikut menjadi fondasi bersama untuk seluruh kategori:
+
+- **Brand mark:** gunakan logo atau identitas akun yang telah disetujui; jangan mengubah proporsi atau menggunakannya di luar ketentuan.
+- **Typography:** tetapkan satu keluarga typeface utama yang modern dan mudah dibaca, dengan maksimal dua keluarga font dalam satu materi.
+- **Grid dan spacing:** gunakan grid, alignment, margin, dan jarak antarelemen yang konsisten.
+- **Layout system:** pertahankan hierarki headline, supporting copy, visual utama, informasi pendukung, dan CTA.
+- **Image quality:** gunakan aset beresolusi memadai, crop yang disengaja, dan kualitas visual yang konsisten.
+- **Brand signature:** gunakan elemen identitas akun secara halus dan konsisten, tanpa membuat semua kategori terlihat sama.
+- **Accessibility:** pastikan kontras teks, ukuran informasi, dan keterbacaan tetap baik pada layar ponsel.
+
+Global foundation mengatur kualitas dan konsistensi brand. Warna aksen, mood, komposisi, dan gaya visual kategori boleh berbeda sesuai creative direction masing-masing.
+
+### 13.2 Category Visual Identity
+
+| Category | Visual Concept | Mood | Dominant Palette | Lighting / Image Style |
+|---|---|---|---|---|
+| Product | Premium Product Showcase | Premium, clean, confident | Silver, graphite, white, cool grey | Soft diffused studio light, controlled reflections, refined shadows |
+| Promotion | Commercial Campaign | Energetic, persuasive, urgent when appropriate | White, black, plus one campaign accent | Bright commercial lighting, high clarity, strong contrast |
+| Lifestyle | Human Experience | Warm, aspirational, authentic | Natural beige, warm grey, earth tones | Natural daylight, candid and environmental photography |
+| Education | Technical Explainer | Clear, intelligent, informative | White, blue, light grey | Even lighting, clean interface and diagram-led visuals |
+| News | Editorial Announcement | Modern, timely, authoritative | Black, white, charcoal | Editorial photography, controlled dramatic highlights |
+| Comparison | Side-by-Side Analysis | Objective, structured, precise | Neutral grey, white, blue accent | Consistent lighting, scale, angle, and crop across compared items |
+| Tips | Practical How-To | Friendly, simple, useful | White, soft pastel, yellow accent | Bright natural light, clear demonstration visuals |
+
+Palet di atas merupakan arahan kreatif, bukan warna resmi Apple. Terapkan warna sebagai sistem visual kategori dan jangan mengubah warna produk atau antarmuka asli secara menyesatkan.
+
+## 14. Creative Direction
+
+### 14.1 Product — Premium Product Showcase
+
+- **Tujuan visual:** menjadikan produk sebagai hero utama dan menonjolkan desain, material, detail, serta fitur.
+- **Mood:** premium, minimal, sophisticated, precise.
+- **Warna:** silver, graphite, soft white, cool grey.
+- **Lighting:** soft diffused studio lighting, balanced highlights, gentle shadows, dan refleksi yang terkontrol.
+- **Komposisi:** hero product dengan ruang negatif; gunakan close-up untuk detail material, kamera, layar, atau port.
+- **Typography:** headline singkat, tegas, dan elegan; supporting copy minimal.
+- **Graphic elements:** garis tipis, label spesifikasi, detail callout, dan panel informasi sederhana.
+- **Photography/video:** product beauty shot, macro detail, 360-degree movement, dan slow cinematic reveal.
+- **Hindari:** dekorasi berlebihan, refleksi yang mengganggu, spesifikasi terlalu padat, atau efek yang mengubah tampilan produk.
+
+### 14.2 Promotion — Commercial Campaign
+
+- **Tujuan visual:** membuat penawaran dan tindakan berikutnya mudah dipahami.
+- **Mood:** energetic, persuasive, clear, campaign-driven.
+- **Warna:** white dan black sebagai basis dengan satu accent color kampanye.
+- **Lighting:** bright commercial lighting dengan kontras yang jelas.
+- **Komposisi:** headline dan benefit menjadi fokus; produk mendukung pesan; CTA memiliki posisi yang konsisten dan terlihat.
+- **Typography:** headline kuat dengan hierarki harga atau benefit yang jelas.
+- **Graphic elements:** offer badge, price block, campaign frame, date range, dan CTA.
+- **Photography/video:** produk dalam konteks kampanye, motion graphic sederhana, dan transisi yang cepat tetapi terbaca.
+- **Hindari:** urgency palsu, countdown yang tidak valid, klaim diskon tanpa bukti, atau syarat promo yang disembunyikan.
+
+### 14.3 Lifestyle — Human Experience
+
+- **Tujuan visual:** menunjukkan hubungan alami antara teknologi, aktivitas, dan pengalaman manusia.
+- **Mood:** warm, aspirational, authentic, human.
+- **Warna:** beige, warm grey, natural white, dan earth tones.
+- **Lighting:** natural daylight, soft window light, dan ambient lighting.
+- **Komposisi:** environmental storytelling; tempatkan manusia dan aktivitas sebagai konteks, sementara produk hadir secara natural.
+- **Typography:** editorial, ringan, dan tidak mendominasi foto.
+- **Graphic elements:** caption overlay minimal, frame editorial, dan narasi singkat.
+- **Photography/video:** candid moments, daily routines, travel, work, study, fitness, dan creative activities.
+- **Hindari:** pose terlalu artifisial, penggunaan produk yang tidak realistis, atau visual yang terasa seperti poster penjualan.
+
+### 14.4 Education — Technical Explainer
+
+- **Tujuan visual:** menyederhanakan konsep, fitur, dan proses teknis agar mudah dipahami.
+- **Mood:** clear, intelligent, informative, systematic.
+- **Warna:** white, blue, light grey, dengan warna status atau penekanan yang terbatas.
+- **Lighting:** even lighting dan visual yang bersih; prioritaskan keterbacaan diagram atau interface.
+- **Komposisi:** satu konsep utama per frame; susun informasi dari konteks, penjelasan, ilustrasi, hingga kesimpulan.
+- **Typography:** sans-serif yang jelas; gunakan heading, subheading, dan body text dengan hierarki konsisten.
+- **Graphic elements:** diagram, annotation, numbered flow, UI callout, dan icon pendukung.
+- **Photography/video:** screen recording yang akurat, demonstrasi fitur, diagram, dan motion graphic edukatif.
+- **Hindari:** teks terlalu kecil, jargon tanpa penjelasan, atau simulasi interface yang tampak seperti tampilan resmi tetapi tidak akurat.
+
+### 14.5 News — Editorial Announcement
+
+- **Tujuan visual:** menyampaikan informasi baru secara cepat, kredibel, dan mudah dipindai.
+- **Mood:** modern, timely, authoritative, editorial.
+- **Warna:** black, white, charcoal, dengan accent terbatas.
+- **Lighting:** editorial photography dengan highlight terkontrol; jangan gunakan efek dramatis yang mengubah makna informasi.
+- **Komposisi:** headline dominan, visual pendukung, tanggal atau konteks, dan sumber informasi.
+- **Typography:** editorial headline dengan hierarki yang kuat dan ringkas.
+- **Graphic elements:** date stamp, source label, announcement tag, dan garis pemisah.
+- **Photography/video:** aset pengumuman resmi, event imagery, atau visual editorial yang relevan.
+- **Hindari:** desain sensasional, rumor tanpa label, dan visual yang memberi kesan pengumuman resmi tanpa sumber.
+
+### 14.6 Comparison — Side-by-Side Analysis
+
+- **Tujuan visual:** membantu audiens melihat perbedaan yang relevan dan membuat keputusan.
+- **Mood:** objective, structured, precise, balanced.
+- **Warna:** neutral grey, white, dan blue accent.
+- **Lighting:** pencahayaan, sudut, skala, dan crop harus konsisten untuk objek yang dibandingkan.
+- **Komposisi:** split-screen atau kolom sejajar; setiap produk mendapat ruang dan hierarki yang setara.
+- **Typography:** label dan angka harus mudah dipindai; gunakan penamaan model yang spesifik.
+- **Graphic elements:** comparison grid, specification cards, check markers, dan highlight perbedaan.
+- **Photography/video:** foto produk dengan perspektif konsisten; gunakan tabel untuk data yang lebih kompleks.
+- **Hindari:** ukuran gambar yang bias, data tidak setara, pemilihan spesifikasi yang menyesatkan, atau kesimpulan mutlak tanpa konteks.
+
+### 14.7 Tips — Practical How-To
+
+- **Tujuan visual:** membuat tindakan praktis mudah diikuti dan diterapkan.
+- **Mood:** friendly, simple, useful, approachable.
+- **Warna:** white, soft pastel, dan yellow accent secara terukur.
+- **Lighting:** bright natural lighting dengan tampilan yang bersih.
+- **Komposisi:** langkah bernomor, satu tindakan per frame, dan hasil atau outcome yang terlihat.
+- **Typography:** instruksi singkat, jelas, dan berorientasi tindakan.
+- **Graphic elements:** numbered steps, arrows, tap indicators, before-after, dan highlight area.
+- **Photography/video:** hands-on demonstration, screen recording, close-up interaksi, dan tutorial singkat.
+- **Hindari:** terlalu banyak langkah dalam satu frame, indikator yang tidak sesuai interface, atau instruksi tanpa konteks kompatibilitas perangkat.
+
+## 15. Visual Production Guidelines
+
+### 15.1 Photography and Asset Selection
+
+- Utamakan aset produk dan materi yang penggunaannya telah diizinkan.
+- Pertahankan warna, bentuk, proporsi, dan detail produk secara akurat.
+- Untuk lifestyle, pastikan aktivitas dan penggunaan perangkat terlihat wajar.
+- Untuk comparison, gunakan kondisi pengambilan gambar yang setara.
+- Catat sumber, pemilik, lisensi, dan izin penggunaan aset bila diperlukan.
+
+### 15.2 Lighting
+
+- Product: soft studio light dan controlled reflections.
+- Promotion: bright commercial light dan clear contrast.
+- Lifestyle: natural daylight dan ambient light.
+- Education: even light dan low-distraction background.
+- News: editorial light yang mendukung konteks.
+- Comparison: matched lighting untuk seluruh objek.
+- Tips: bright, practical lighting yang memperjelas demonstrasi.
+
+### 15.3 Color Palette
+
+- Gunakan palet kategori sebagai arahan dominan, bukan aturan untuk mewarnai ulang produk.
+- Batasi accent color agar pesan utama tetap jelas.
+- Pastikan kontras teks dan background memenuhi kebutuhan keterbacaan.
+- Simpan token warna kategori pada design system agar produksi dapat konsisten.
+- Jangan menyebut palet kategori sebagai official Apple brand colors.
+
+### 15.4 Composition and Layout
+
+- Tetapkan satu focal point utama untuk setiap frame.
+- Gunakan hierarchy: headline → key visual → supporting information → CTA/source.
+- Terapkan safe area untuk format Instagram dan hindari teks penting di area yang mudah tertutup UI.
+- Pastikan carousel memiliki alur antar-slide yang konsisten.
+- Gunakan negative space secara sengaja; jangan memenuhi seluruh area dengan teks dan ornamen.
+
+### 15.5 Typography
+
+- Gunakan maksimal dua keluarga font dalam satu materi.
+- Tetapkan skala untuk headline, subheading, body, caption, dan footnote.
+- Jaga ukuran teks agar tetap terbaca pada layar ponsel.
+- Gunakan bold hanya untuk informasi yang perlu ditekankan.
+- Hindari paragraf panjang di dalam visual; pindahkan detail tambahan ke caption bila sesuai.
+
+### 15.6 Graphic Elements
+
+- Setiap elemen grafis harus mendukung informasi atau navigasi visual.
+- Gunakan icon, line, badge, frame, dan annotation secara konsisten.
+- Hindari dekorasi yang mengganggu fokus produk atau pesan.
+- Pastikan UI mockup, screenshot, dan ilustrasi diberi konteks yang tepat.
+- CTA hanya digunakan jika ada tindakan yang benar-benar tersedia.
+
+### 15.7 Format Adaptation
+
+| Format | Production Guidance |
+|---|---|
+| Feed Single Image | Satu pesan utama, satu focal point, dan headline ringkas |
+| Carousel | Cover kuat, alur logis, satu ide utama per slide, penutup dengan CTA atau ringkasan |
+| Reels | Hook awal, demonstrasi atau cerita, subtitle, dan closing yang jelas |
+| Story | Informasi singkat, kontras tinggi, dan interaksi yang mudah digunakan |
+| Infographic | Struktur informasi bertingkat, label jelas, dan sumber jika memuat data |
+
+## 16. Visual Consistency & Quality Control
+
+Sebelum publikasi, lakukan pemeriksaan berikut:
+
+- [ ] Primary Category sesuai dengan creative direction yang dipilih.
+- [ ] Visual memiliki karakter kategori yang dapat dikenali.
+- [ ] Global Brand Foundation tetap konsisten.
+- [ ] Palet warna dan mood sesuai kategori.
+- [ ] Produk, fitur, interface, dan spesifikasi digambarkan secara akurat.
+- [ ] Headline, body text, dan CTA terbaca pada layar ponsel.
+- [ ] Komposisi memiliki focal point dan hierarchy yang jelas.
+- [ ] Foto, video, musik, font, dan aset grafis memiliki hak penggunaan yang sesuai.
+- [ ] Informasi harga, promosi, tanggal, ketersediaan, dan klaim telah diverifikasi.
+- [ ] Sumber informasi dicantumkan bila diperlukan.
+- [ ] Tidak ada klaim afiliasi resmi atau penggunaan identitas merek yang menyesatkan.
+- [ ] Final export diperiksa pada tampilan mobile sebelum dijadwalkan.
+
+**Prinsip akhir:** konsistensi brand tidak berarti semua kategori harus memiliki tampilan yang sama. Setiap kategori harus berbeda secara visual, tetapi tetap terasa sebagai bagian dari satu sistem komunikasi brand.
 
 ---
 
-**Status:** V2.0.0 — Approved baseline  
+**Status:** V2.1.0 — Approved baseline — Approved baseline  
 **Scope:** Dokumentasi kategori konten Instagram; tidak mengubah konfigurasi aplikasi, database, atau workflow repository lainnya.
