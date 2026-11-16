@@ -1,0 +1,654 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gantulu/ai-agent-applestore/blob/main/schemas/output.schema.json",
+  "title": "Apple Instagram Prompt Output V1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "template_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "brand": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "market": {
+          "type": "string",
+          "const": "MY"
+        },
+        "platform": {
+          "type": "string",
+          "const": "instagram"
+        },
+        "content_locale": {
+          "type": "string",
+          "const": "en-MY"
+        },
+        "affiliation_statement": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "project_name",
+        "market",
+        "platform",
+        "content_locale",
+        "affiliation_statement"
+      ]
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "topic": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objective": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1
+        },
+        "primary_category": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "type": "string",
+              "enum": [
+                "CAT-001",
+                "CAT-002",
+                "CAT-003",
+                "CAT-004",
+                "CAT-005",
+                "CAT-006",
+                "CAT-007"
+              ]
+            },
+            "category_slug": {
+              "type": "string",
+              "enum": [
+                "product",
+                "promotion",
+                "lifestyle",
+                "education",
+                "news",
+                "comparison",
+                "tips"
+              ]
+            },
+            "category_name": {
+              "type": "string",
+              "enum": [
+                "Product",
+                "Promotion",
+                "Lifestyle",
+                "Education",
+                "News",
+                "Comparison",
+                "Tips"
+              ]
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        "secondary_category": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "category_id": {
+                  "type": "string",
+                  "enum": [
+                    "CAT-001",
+                    "CAT-002",
+                    "CAT-003",
+                    "CAT-004",
+                    "CAT-005",
+                    "CAT-006",
+                    "CAT-007"
+                  ]
+                },
+                "category_slug": {
+                  "type": "string",
+                  "enum": [
+                    "product",
+                    "promotion",
+                    "lifestyle",
+                    "education",
+                    "news",
+                    "comparison",
+                    "tips"
+                  ]
+                },
+                "category_name": {
+                  "type": "string",
+                  "enum": [
+                    "Product",
+                    "Promotion",
+                    "Lifestyle",
+                    "Education",
+                    "News",
+                    "Comparison",
+                    "Tips"
+                  ]
+                }
+              },
+              "required": [
+                "category_id",
+                "category_slug",
+                "category_name"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "request_summary": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "topic",
+        "objective",
+        "audience",
+        "primary_category",
+        "secondary_category",
+        "request_summary"
+      ]
+    },
+    "product": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "product_name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "generation": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "configuration": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_facts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "claim": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_url": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "checked_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "claim",
+              "source_url",
+              "checked_at"
+            ]
+          }
+        }
+      },
+      "required": [
+        "product_name",
+        "model",
+        "generation",
+        "configuration",
+        "verified_facts"
+      ]
+    },
+    "creative": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "concept": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_angle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key_message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visual_style": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mood": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "palette": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "lighting": {
+              "type": "string",
+              "minLength": 1
+            },
+            "composition": {
+              "type": "string",
+              "minLength": 1
+            },
+            "typography": {
+              "type": "string",
+              "minLength": 1
+            },
+            "graphic_elements": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "mood",
+            "palette",
+            "lighting",
+            "composition",
+            "typography",
+            "graphic_elements"
+          ]
+        },
+        "image_prompt": {
+          "type": "string",
+          "minLength": 1
+        },
+        "negative_prompt": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "concept",
+        "content_angle",
+        "key_message",
+        "visual_style",
+        "image_prompt",
+        "negative_prompt"
+      ]
+    },
+    "copywriting": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "subheadline": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "body_copy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cta": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hashtags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "headline",
+        "subheadline",
+        "body_copy",
+        "caption",
+        "cta",
+        "hashtags"
+      ]
+    },
+    "format_specification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "format_id": {
+          "type": "string",
+          "enum": [
+            "single_image",
+            "story"
+          ]
+        },
+        "placement": {
+          "type": "string",
+          "enum": [
+            "instagram_feed",
+            "instagram_story"
+          ]
+        },
+        "aspect_ratio": {
+          "type": "string",
+          "enum": [
+            "4:5",
+            "9:16"
+          ]
+        },
+        "generation_canvas": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "width_px": {
+              "type": "integer",
+              "enum": [
+                1440,
+                2048
+              ]
+            },
+            "height_px": {
+              "type": "integer",
+              "const": 2560
+            },
+            "profile_id": {
+              "type": "string",
+              "const": "portrait_2k_long_edge_2560"
+            }
+          },
+          "required": [
+            "width_px",
+            "height_px",
+            "profile_id"
+          ]
+        },
+        "export_canvas": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "width_px": {
+              "type": "integer",
+              "const": 1080
+            },
+            "height_px": {
+              "type": "integer",
+              "enum": [
+                1350,
+                1920
+              ]
+            }
+          },
+          "required": [
+            "width_px",
+            "height_px"
+          ]
+        },
+        "safe_area": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "format_id",
+        "placement",
+        "aspect_ratio",
+        "generation_canvas",
+        "export_canvas",
+        "safe_area"
+      ]
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "reference_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "usage_rights_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "pending",
+            "not_required"
+          ]
+        }
+      },
+      "required": [
+        "required_assets",
+        "reference_assets",
+        "usage_rights_status"
+      ]
+    },
+    "compliance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source_verification_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "unverified",
+            "not_required"
+          ]
+        },
+        "brand_affiliation_checked": {
+          "type": "boolean"
+        },
+        "asset_rights_status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "pending",
+            "not_required"
+          ]
+        },
+        "factual_claims": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "human_review_required": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "source_verification_status",
+        "brand_affiliation_checked",
+        "asset_rights_status",
+        "factual_claims",
+        "warnings",
+        "human_review_required"
+      ]
+    },
+    "quality_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "needs_human_review",
+            "review_ready"
+          ]
+        },
+        "schema_validation": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "passed"
+          ]
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_format": {
+              "type": "boolean"
+            },
+            "locale": {
+              "type": "boolean"
+            },
+            "generation_dimensions": {
+              "type": "boolean"
+            },
+            "factual_claims": {
+              "type": "boolean"
+            },
+            "brand_safety": {
+              "type": "boolean"
+            },
+            "asset_rights": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "category_format",
+            "locale",
+            "generation_dimensions",
+            "factual_claims",
+            "brand_safety",
+            "asset_rights"
+          ]
+        },
+        "human_approval_required": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "status",
+        "schema_validation",
+        "checks",
+        "human_approval_required"
+      ]
+    }
+  },
+  "required": [
+    "template_version",
+    "brand",
+    "request",
+    "product",
+    "creative",
+    "copywriting",
+    "format_specification",
+    "assets",
+    "compliance",
+    "quality_control"
+  ]
+}

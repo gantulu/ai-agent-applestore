@@ -1,0 +1,50 @@
+{
+  "mapping_version": "1.0.0",
+  "source": "kategori.md V2.1.0 and config/category_direction.json",
+  "target_schema": "legacy public.make_webhook_categories.category",
+  "semantics": "The legacy category_id field in public.make_webhook stores the category slug. It does not store CAT-NNN canonical IDs.",
+  "mappings": [
+    {
+      "canonical_id": "CAT-001",
+      "slug": "product",
+      "legacy_category_value": "product",
+      "category_name": "Product"
+    },
+    {
+      "canonical_id": "CAT-002",
+      "slug": "promotion",
+      "legacy_category_value": "promotion",
+      "category_name": "Promotion"
+    },
+    {
+      "canonical_id": "CAT-003",
+      "slug": "lifestyle",
+      "legacy_category_value": "lifestyle",
+      "category_name": "Lifestyle"
+    },
+    {
+      "canonical_id": "CAT-004",
+      "slug": "education",
+      "legacy_category_value": "education",
+      "category_name": "Education"
+    },
+    {
+      "canonical_id": "CAT-005",
+      "slug": "news",
+      "legacy_category_value": "news",
+      "category_name": "News"
+    },
+    {
+      "canonical_id": "CAT-006",
+      "slug": "comparison",
+      "legacy_category_value": "comparison",
+      "category_name": "Comparison"
+    },
+    {
+      "canonical_id": "CAT-007",
+      "slug": "tips",
+      "legacy_category_value": "tips",
+      "category_name": "Tips"
+    }
+  ]
+}
