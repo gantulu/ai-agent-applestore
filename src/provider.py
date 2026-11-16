@@ -9,6 +9,23 @@ class ProviderError(RuntimeError):
     pass
 
 
+def _to_openai_schema(value: Any) -> Any:
+    """Remove local JSON Schema metadata and lower const to enum for API compatibility."""
+    if isinstance(value, list):
+        return [_to_openai_schema(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    result = {}
+    for key, item in value.items():
+        if key in ("$schema", "$id", "title", "minLength", "default"):
+            continue
+        if key == "const":
+            result["enum"] = [item]
+            continue
+        result[key] = _to_openai_schema(item)
+    return result
+
+
 class OpenAIResponsesProvider:
     """Small standard-library client for the OpenAI Responses API."""
 
@@ -21,8 +38,6 @@ class OpenAIResponsesProvider:
             raise ProviderError("OPENAI_API_KEY is required. Add it as a GitHub Actions secret.")
 
     def generate(self, instructions: str, request: dict[str, Any], schema: dict[str, Any]) -> str:
-        # OpenAI Structured Outputs accepts a supported JSON Schema subset.
-        api_schema = {key: value for key, value in schema.items() if key not in ("$schema", "$id", "title")}
         payload = {
             "model": self.model,
             "instructions": instructions,
@@ -32,7 +47,7 @@ class OpenAIResponsesProvider:
                     "type": "json_schema",
                     "name": "apple_instagram_prompt_output",
                     "strict": True,
-                    "schema": api_schema,
+                    "schema": _to_openai_schema(schema),
                 }
             },
         }

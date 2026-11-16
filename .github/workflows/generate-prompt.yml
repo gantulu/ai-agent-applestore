@@ -1,0 +1,113 @@
+name: Generate Instagram Image Prompt
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: Content topic or brief
+        required: true
+        type: string
+      category:
+        description: Select a canonical category or let the Strategist choose
+        required: true
+        default: auto
+        type: choice
+        options:
+          - auto
+          - product
+          - promotion
+          - lifestyle
+          - education
+          - news
+          - comparison
+          - tips
+      format:
+        description: Instagram placement
+        required: true
+        default: single_image
+        type: choice
+        options:
+          - single_image
+          - story
+      product_name:
+        description: Product name (optional)
+        required: false
+        type: string
+      objective:
+        description: Content objective (optional)
+        required: false
+        default: awareness
+        type: string
+      audience:
+        description: Intended audience (optional)
+        required: false
+        default: Apple users and prospective buyers in Malaysia
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-6-luna' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Require API credential
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::Configure OPENAI_API_KEY in repository Actions secrets."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: python3 -m pip install --disable-pip-version-check -r requirements.txt
+
+      - name: Build request file
+        env:
+          REQUEST_TOPIC: ${{ inputs.topic }}
+          REQUEST_CATEGORY: ${{ inputs.category }}
+          REQUEST_FORMAT: ${{ inputs.format }}
+          REQUEST_PRODUCT: ${{ inputs.product_name }}
+          REQUEST_OBJECTIVE: ${{ inputs.objective }}
+          REQUEST_AUDIENCE: ${{ inputs.audience }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          request = {
+              "topic": os.environ["REQUEST_TOPIC"],
+              "category": os.environ["REQUEST_CATEGORY"] or "auto",
+              "format": os.environ["REQUEST_FORMAT"],
+              "product_name": os.environ["REQUEST_PRODUCT"] or None,
+              "objective": os.environ["REQUEST_OBJECTIVE"] or "awareness",
+              "audience": os.environ["REQUEST_AUDIENCE"] or "Apple users and prospective buyers in Malaysia",
+              "supplied_facts": [],
+              "source_urls": [],
+              "asset_urls": [],
+          }
+          Path("/tmp/instagram-request.json").write_text(
+              json.dumps(request, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Generate and validate prompt JSON
+        run: python3 -m src.main --input /tmp/instagram-request.json --output outputs/prompt-output.json
+
+      - name: Upload generated prompt artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: instagram-prompt-${{ github.run_number }}
+          path: outputs/prompt-output.json
+          if-no-files-found: error
+          retention-days: 14
