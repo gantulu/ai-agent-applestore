@@ -35,7 +35,7 @@ Dokumen ini menetapkan standar kategori konten Instagram untuk akun Apple Store 
 | Channel | Instagram |
 | Market | Malaysia |
 | Category Count | 7 |
-| Last Updated | 2026-11-15 |
+| Last Updated | 2026-11-16 |
 
 ### Metadata standar kategori
 
@@ -671,7 +671,7 @@ Sebelum publikasi, lakukan pemeriksaan berikut:
 
 ---
 
-**Status:** V2.1.0 — Approved baseline — Approved baseline  
+**Status:** V2.1.0 — Approved baseline  
 **Scope:** Dokumentasi kategori konten Instagram; tidak mengubah konfigurasi aplikasi, database, atau workflow repository lainnya.
 
 ## 17. AI Agent V1.0 — Canonical Configuration Alignment
