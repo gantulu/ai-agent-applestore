@@ -40,8 +40,8 @@ jobs:
 
           echo "## P2 Maintenance Audit — Read Only" >> "$summary"
           echo "" >> "$summary"
-          echo "- Repository: `$repo`" >> "$summary"
-          echo "- Default branch: `main`" >> "$summary"
+          printf -- '- Repository: %s\n' "$repo" >> "$summary"
+          printf -- '- Default branch: %s\n' "main" >> "$summary"
           echo "- Mode: read-only; no refs, branches, tags, or rulesets are modified." >> "$summary"
           echo "" >> "$summary"
           echo "| Branch | Compare status | Ahead | Behind | Changed files |" >> "$summary"
