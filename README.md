@@ -1,27 +1,44 @@
 # Apple Instagram AI Agent
 
-AI Agent untuk menghasilkan image-generation prompts Instagram bagi projek kandungan produk dan ekosistem Apple dengan sasaran pasaran Malaysia.
+A **ChatGPT-native Hybrid Agent** for creating Instagram image-generation prompts and structured content drafts for Apple-product content targeting Malaysia.
+
+## Execution model
+
+**The agent runs in ChatGPT. No OpenAI API key is required.**
+- ChatGPT performs Strategist → Creator → Editor in the active conversation.
+- GitHub stores the version-controlled Master Prompt, modular configuration, and JSON contracts.
+- GitHub Actions validates repository files only; it does not execute AI generation.
+- No external model API, API credential, or model endpoint is used.
+- The primary deliverable is a strict-JSON image-generation prompt. Actual image rendering is optional and uses ChatGPT's native image-generation capability when explicitly requested.
+
+## Recommended ChatGPT setup
+
+Create a ChatGPT Project named **Apple Instagram AI Agent**.
+
+1. Add the complete contents of `prompts/master_prompt.md` to Project instructions.
+2. Upload these files as Project sources: `kategori.md`, `config/category_direction.json`, `config/format_specification.json`, `schemas/input.schema.json`, and `schemas/output.schema.json`.
+3. Optionally upload `docs/output-contract.md`.
+4. Start each task in the Project with the brief, product details, sources, and desired format.
+5. When repository files change, refresh the Project sources or retrieve current files using an explicitly connected GitHub app/connector. Project files are not an automatic live mirror of GitHub.
+
+Projects support instructions, reference files, and ongoing conversations: [OpenAI Projects documentation](https://help.openai.com/en/articles/10169521-projects-in-chatgpt). New custom GPT creation is unavailable on personal Free, Go, Plus, and Pro accounts according to current OpenAI documentation, so Projects are the recommended option: [GPT creation availability](https://help.openai.com/en/articles/8554397-create-a-gpt).
 
 ## Project baseline
 
 | Item | Standard |
 |---|---|
 | Agent | One Hybrid Agent: Strategist → Creator → Editor |
+| Execution | ChatGPT native Project/conversation |
 | Market / language | Malaysia / English (en-MY) |
-| Canonical categories | 7, from kategori.md V2.1.0 |
-| Instagram formats | single_image (Feed), story (Story) |
+| Categories | 7 canonical categories from kategori.md V2.1.0 |
+| Formats | single_image (Feed), story (Story) |
 | Generation profile | Portrait 2K long edge 2560 px |
-| Output contract | Strict JSON Schema, version 1.0.0 |
-| Runtime | Python 3.11+ |
-| Orchestration | GitHub Actions |
-| Model API | OpenAI Responses API (configurable model) |
+| Output contract | Strict JSON Schema 1.0.0 |
+| GitHub Actions | Validation only |
+| Model API / API key | Not used |
 | Publication | Draft only; human approval required |
 
-**Brand disclaimer:** This is an independent Apple-product content project. Do not claim Apple ownership, endorsement, or authorized-reseller status unless separately verified and expressly permitted.
-
 ## Canonical categories
-
-The source of truth is [kategori.md](./kategori.md) V2.1.0.
 
 | ID | Slug | Category |
 |---|---|---|
@@ -33,7 +50,7 @@ The source of truth is [kategori.md](./kategori.md) V2.1.0.
 | CAT-006 | comparison | Comparison |
 | CAT-007 | tips | Tips |
 
-One primary category is mandatory; one secondary category is optional. Category is selected by editorial objective, not merely by the product shown.
+One primary category is mandatory; one secondary category is optional. Select by editorial objective, not merely by the featured product.
 
 ## Formats and resolution
 
@@ -42,70 +59,32 @@ One primary category is mandatory; one secondary category is optional. Category 
 | Feed / single_image | 2048 × 2560 | 1080 × 1350 | 4:5 |
 | Story / story | 1440 × 2560 | 1080 × 1920 | 9:16 |
 
-The 2K values define this project's portrait generation profile (2560 px long edge). They do not guarantee native output support from every image provider. This repository generates the text prompt and target dimensions; it does not generate or upscale image files.
+These are project target dimensions, not a guarantee that ChatGPT's native image tool renders at those exact pixel dimensions. Actual image output options govern rendered image size.
 
-## Quick start
+## Example request
 
-Requirements: Python 3.11+ and an OpenAI API key.
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-
-export OPENAI_API_KEY="your-api-key"
-export OPENAI_MODEL="gpt-6-luna"  # optional; override to a model enabled for your API project
-
-python3 -m src.main \
-  --input inputs/request.example.json \
-  --output outputs/prompt-output.json
+```text
+Create an Instagram image prompt.
+Topic: iPhone camera features
+Category: auto
+Format: single_image
+Objective: education
+Audience: Apple users in Malaysia
+Product details / verified sources: [provide details]
 ```
 
-The generated file is validated against schemas/output.schema.json. The runtime does not browse or independently verify facts, so factual claims are marked for human review.
+The agent selects a canonical category, combines the Master Prompt with the matching category and format rules, and returns the strict JSON contract. Current price, promotion, availability, compatibility, and news claims must be researched or flagged as unverified.
 
-## Generate from GitHub Actions
+## Repository validation
 
-1. In GitHub, open Settings → Secrets and variables → Actions.
-2. Add repository secret OPENAI_API_KEY.
-3. Optionally add repository variable OPENAI_MODEL; default is gpt-6-luna.
-4. Open Actions → Generate Instagram Image Prompt → Run workflow.
-5. Enter the topic, category (or auto), format, and optional product details.
-6. Download the instagram-prompt artifact. It contains prompt-output.json.
+GitHub Actions validates JSON configuration, JSON Schemas, and contract tests on pushes and pull requests. CI does not call ChatGPT and requires no AI API secret.
 
-The manual workflow is available after .github/workflows/generate-prompt.yml is merged into the default branch. See [GitHub Actions guide](./docs/github-actions.md).
+See [architecture](docs/architecture.md), [ChatGPT Project setup](docs/chatgpt-project-setup.md), [output contract](docs/output-contract.md), and [GitHub Actions](docs/github-actions.md).
 
-## Local validation
+## Safety
 
-```bash
-python3 -m pip install -r requirements.txt
-python3 -m json.tool schemas/input.schema.json > /dev/null
-python3 -m json.tool schemas/output.schema.json > /dev/null
-python3 -m unittest discover -s tests -v
-```
-
-CI runs the same tests on pushes and pull requests. The tests do not call the paid model API.
-
-## Repository map
-
-| Path | Purpose |
-|---|---|
-| README.md | Project baseline and setup |
-| kategori.md | Canonical seven-category taxonomy |
-| prompts/master_prompt.md | Global Hybrid Agent instructions |
-| config/category_direction.json | Seven modular category directions |
-| config/format_specification.json | Feed/Story and 2K/export dimensions |
-| schemas/input.schema.json | Generation request contract |
-| schemas/output.schema.json | Strict ten-key output contract |
-| src/ | Configuration, prompt assembly, provider, generator, validators |
-| tests/ | Contract, configuration, generation, and mapping tests |
-| .github/workflows/ | CI validation and manual prompt generation |
-| docs/database-compatibility.md | Legacy SQL category mapping and write boundary |
-
-## Safety and scope
-
-- API keys are read only from environment variables / GitHub Secrets; never commit credentials.
-- GitHub Actions uses read-only contents permission and actions pinned to full commit SHAs.
-- The runtime does not auto-publish, schedule, or send Instagram content.
-- The legacy SQL queue requires an actual image URL and schedule date/time. Prompt JSON alone is not a publishable queue record; no database write is performed.
-- Product, price, compatibility, news, and promotion claims require source verification and human review.
-- See [architecture](./docs/architecture.md), [output contract](./docs/output-contract.md), and [database compatibility](./docs/database-compatibility.md).
+- No OPENAI_API_KEY, OpenAI API, Responses API, or external model endpoint.
+- No AI inference or image generation in GitHub Actions.
+- No automatic Instagram publishing, scheduling, or database writes.
+- Factual claims and asset rights require verification and human review.
+- Legacy SQL mapping is reference-only.

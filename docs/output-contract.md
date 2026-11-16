@@ -1,6 +1,6 @@
 # Output Contract V1.0.0
 
-The output is one JSON object with exactly ten top-level keys in this order:
+The ChatGPT-native agent returns one JSON object with exactly ten top-level keys in this order:
 
 1. template_version
 2. brand
@@ -13,28 +13,22 @@ The output is one JSON object with exactly ten top-level keys in this order:
 9. compliance
 10. quality_control
 
-The executable contract is schemas/output.schema.json. All object properties are required; unknown scalar values use null where the schema permits it. Additional properties are rejected.
+The machine-readable contract is schemas/output.schema.json. Object properties are required; unknown scalar values use null where permitted. Additional properties are rejected.
 
 ## Field groups
 
-- **brand:** project context, market, platform, locale, and independent-affiliation disclaimer.
-- **request:** topic, objective, audience, primary category, optional secondary category, and concise request summary.
-- **product:** product/model/configuration and supplied evidence notes. Evidence notes are not proof of verification.
-- **creative:** concept, content angle, key message, visual style, positive image prompt, and negative prompt.
-- **copywriting:** headline, optional subheadline, body copy, caption, optional CTA, and hashtags.
-- **format_specification:** format ID, placement, ratio, 2K generation canvas, export canvas, and safe-area guidance.
+- **brand:** project context, market, platform, locale, affiliation disclaimer.
+- **request:** topic, objective, audience, primary category, optional secondary category, summary.
+- **product:** product/model/configuration and supplied evidence notes.
+- **creative:** concept, content angle, key message, visual style, image prompt, negative prompt.
+- **copywriting:** headline, subheadline, body copy, caption, CTA, hashtags.
+- **format_specification:** format, placement, ratio, generation canvas, export canvas, safe area.
 - **assets:** required/reference assets and usage-rights status.
-- **compliance:** source verification status, affiliation and asset-rights checks, factual claims, warnings, and mandatory human review.
-- **quality_control:** review status, schema validation state, runtime checks, and mandatory human approval.
+- **compliance:** source verification, affiliation and asset-rights checks, factual claims, warnings, human review.
+- **quality_control:** review status, schema validation state, checks, human approval.
 
-## Runtime-enforced values
+## ChatGPT execution rules
 
-The application, not the model, enforces:
-- the canonical category ID/slug/name mapping;
-- requested format and exact generation/export dimensions;
-- market, platform, locale, and affiliation disclaimer;
-- schema validation status after successful validation;
-- mandatory human approval;
-- human-review status when facts or asset rights remain unverified.
+ChatGPT follows the schema and fixed project values. Do not claim programmatic validation passed unless a JSON Schema validator was actually executed. Otherwise identify the output as checked by inspection, not machine-validated.
 
-review_ready means structural and automated checks passed; it does not mean fact-checked, approved, or safe to publish. Publication always requires human approval.
+A review_ready value means only that the checks actually performed passed. It does not mean fact-checked, approved, or safe to publish. Human approval is always required before publication.
