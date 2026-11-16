@@ -1,0 +1,65 @@
+name: P2 Maintenance Audit (Read Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: p2-maintenance-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Audit branches and divergence
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Verify GitHub CLI and jq
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh --version
+          jq --version
+          gh api repos/${GITHUB_REPOSITORY} --jq '.default_branch' | grep -Fx main
+
+      - name: Generate read-only branch audit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          repo="${GITHUB_REPOSITORY}"
+          summary="${GITHUB_STEP_SUMMARY}"
+
+          echo "## P2 Maintenance Audit — Read Only" >> "$summary"
+          echo "" >> "$summary"
+          echo "- Repository: `$repo`" >> "$summary"
+          echo "- Default branch: `main`" >> "$summary"
+          echo "- Mode: read-only; no refs, branches, tags, or rulesets are modified." >> "$summary"
+          echo "" >> "$summary"
+          echo "| Branch | Compare status | Ahead | Behind | Changed files |" >> "$summary"
+          echo "|---|---:|---:|---:|---:|" >> "$summary"
+
+          gh api "repos/$repo/branches?per_page=100" --paginate --jq '.[].name' |
+          while IFS= read -r branch; do
+            [ "$branch" = "main" ] && continue
+            encoded_branch=$(python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$branch")
+            compare=$(gh api "repos/$repo/compare/main...$encoded_branch")
+            status=$(jq -r '.status // "unknown"' <<< "$compare")
+            ahead=$(jq -r '.ahead_by // 0' <<< "$compare")
+            behind=$(jq -r '.behind_by // 0' <<< "$compare")
+            files=$(jq -r '(.files // []) | length' <<< "$compare")
+            printf '| `%s` | %s | %s | %s | %s |\n' "$branch" "$status" "$ahead" "$behind" "$files" >> "$summary"
+          done
+
+          echo "" >> "$summary"
+          echo "### Required next review" >> "$summary"
+          echo "Review each changed-file list and preserve any required commits before authorizing branch archival or deletion." >> "$summary"
+          echo "Ruleset reads and all write operations are intentionally excluded from this workflow version." >> "$summary"
