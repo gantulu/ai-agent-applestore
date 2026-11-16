@@ -661,3 +661,68 @@ Sebelum publikasi, lakukan pemeriksaan berikut:
 
 **Status:** V2.1.0 — Approved baseline — Approved baseline  
 **Scope:** Dokumentasi kategori konten Instagram; tidak mengubah konfigurasi aplikasi, database, atau workflow repository lainnya.
+
+## 17. AI Agent V1.0 — Canonical Configuration Alignment
+
+Bagian ini menetapkan bagaimana taxonomy V2.1.0 digunakan oleh generator AI. Aturan ini melengkapi katalog editorial di atas dan tidak menghapus format lain dari referensi editorial.
+
+### 17.1 Canonical category identifiers
+
+Gunakan ID dan slug berikut sebagai pasangan canonical untuk AI Agent:
+
+| category_id | category_slug | category_name |
+|---|---|---|
+| CAT-001 | product | Product |
+| CAT-002 | promotion | Promotion |
+| CAT-003 | lifestyle | Lifestyle |
+| CAT-004 | education | Education |
+| CAT-005 | news | News |
+| CAT-006 | comparison | Comparison |
+| CAT-007 | tips | Tips |
+
+**Catatan migrasi:** mapping ini mengikuti kategori pada dokumen V2.1.0. README lama menggunakan ID berbeda. Jangan mengubah atau mengasumsikan ulang foreign key maupun record database yang sudah ada tanpa audit dan rencana migrasi terpisah.
+
+### 17.2 Generator format allowlist
+
+Walaupun katalog editorial pada bagian sebelumnya memuat Carousel, Reels, Infographic, UGC, dan format lain, AI Agent V1.0 hanya boleh menghasilkan dua format berikut:
+
+| format_id | Platform placement | Aspect ratio | Canvas |
+|---|---|---|---|
+| single_image | Instagram Feed | 4:5 | 1080 × 1350 px |
+| story | Instagram Story | 9:16 | 1080 × 1920 px |
+
+Format lain tetap menjadi referensi editorial dan bukan nilai valid untuk output generator V1.0.
+
+### 17.3 Language and market
+
+- Audience-facing content language: English.
+- Locale: en-MY (English localized for the Malaysia audience).
+- Market: Malaysia.
+- Use MYR only for prices verified for the Malaysia market.
+- Bahasa Indonesia may remain the documentation language; it does not change the generated content language.
+
+### 17.4 Hybrid agent role
+
+Satu AI Agent menjalankan tiga tanggung jawab secara berurutan:
+
+1. **Strategist:** menentukan objective, audience angle, primary category, product focus, dan format.
+2. **Creator:** menghasilkan creative concept, visual direction, headline, caption, CTA, dan hashtag.
+3. **Editor:** memeriksa factual accuracy, English quality, category/format compliance, brand/legal safeguards, dan output validity.
+
+Ketiganya merupakan tahapan kerja satu agent, bukan tiga deployment agent terpisah.
+
+### 17.5 Output and publication boundary
+
+- Setiap output wajib memiliki tepat satu primary category; secondary category bersifat opsional dan maksimal satu.
+- Output generator menggunakan strict JSON sesuai schema terpisah versi 1.0.0.
+- Generator membuat draft; publikasi tetap membutuhkan human approval.
+- Jangan menyatakan akun sebagai kanal resmi atau afiliasi Apple tanpa verifikasi dan otorisasi.
+- Jangan mengarang spesifikasi, harga, stok, promosi, kompatibilitas, tanggal, atau klaim performa.
+
+### 17.6 Database mapping warning
+
+SQL reference saat ini menggunakan `make_webhook_categories.category` untuk menyimpan slug, dan `make_webhook.category_id` sebagai foreign key ke kolom slug tersebut. Nama kolom `category_id` karena itu tidak merepresentasikan `CAT-NNN` pada taxonomy. Phase 1 tidak mengubah SQL, schema, seed, maupun data. Mapping dan migrasi harus diputuskan pada fase database integration.
+
+---
+
+**AI Agent alignment:** V1.0 — English (en-MY) — Malaysia — 7 categories — 2 generator formats.
