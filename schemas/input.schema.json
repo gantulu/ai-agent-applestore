@@ -117,7 +117,7 @@
         }
       ]
     },
-    "verified_facts": {
+    "supplied_facts": {
       "type": "array",
       "items": {
         "type": "string",

@@ -221,7 +221,7 @@
             }
           ]
         },
-        "verified_facts": {
+        "evidence": {
           "type": "array",
           "items": {
             "type": "object",
@@ -267,7 +267,7 @@
         "model",
         "generation",
         "configuration",
-        "verified_facts"
+        "evidence"
       ]
     },
     "creative": {
