@@ -816,6 +816,88 @@
           }
         }
       }
+    },
+    {
+      "if": {
+        "properties": {
+          "quality_control": {
+            "properties": {
+              "status": {
+                "const": "review_ready"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "quality_control"
+        ]
+      },
+      "then": {
+        "properties": {
+          "quality_control": {
+            "properties": {
+              "schema_validation": {
+                "const": "passed"
+              },
+              "checks": {
+                "properties": {
+                  "category_format": {
+                    "const": true
+                  },
+                  "locale": {
+                    "const": true
+                  },
+                  "generation_dimensions": {
+                    "const": true
+                  },
+                  "factual_claims": {
+                    "const": true
+                  },
+                  "brand_safety": {
+                    "const": true
+                  },
+                  "asset_rights": {
+                    "const": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "compliance": {
+            "properties": {
+              "source_verification_status": {
+                "const": "verified"
+              }
+            },
+            "required": [
+              "source_verification_status"
+            ]
+          }
+        },
+        "required": [
+          "compliance"
+        ]
+      },
+      "then": {
+        "properties": {
+          "product": {
+            "properties": {
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
     }
   ]
 }

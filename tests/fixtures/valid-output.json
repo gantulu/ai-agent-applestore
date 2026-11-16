@@ -1,0 +1,119 @@
+{
+  "template_version": "1.0.0",
+  "brand": {
+    "project_name": "Apple Instagram AI Agent",
+    "market": "MY",
+    "platform": "instagram",
+    "content_locale": "en-MY",
+    "affiliation_statement": "Independent Apple-product-focused content project; not an official Apple channel."
+  },
+  "request": {
+    "topic": "iPhone camera features",
+    "objective": "education",
+    "audience": "Apple users in Malaysia",
+    "primary_category": {
+      "category_id": "CAT-004",
+      "category_slug": "education",
+      "category_name": "Education"
+    },
+    "secondary_category": null,
+    "request_summary": "Explain one verified camera feature in a clear, mobile-first Instagram visual."
+  },
+  "product": {
+    "product_name": "iPhone",
+    "model": null,
+    "generation": null,
+    "configuration": null,
+    "evidence": [
+      {
+        "claim": "The cited feature description is supported by the referenced official documentation.",
+        "source_url": "https://support.apple.com/",
+        "checked_at": "2026-11-16"
+      }
+    ]
+  },
+  "creative": {
+    "concept": "A focused visual explainer showing one camera feature and its practical use.",
+    "content_angle": "Help users understand when and how to use the feature.",
+    "key_message": "Understand the feature before using it.",
+    "visual_style": {
+      "mood": [
+        "clear",
+        "modern",
+        "informative"
+      ],
+      "palette": [
+        "white",
+        "blue",
+        "light grey"
+      ],
+      "lighting": "Even, low-distraction lighting.",
+      "composition": "One focal point with a concise information hierarchy.",
+      "typography": "Readable sans-serif with clear heading and body hierarchy.",
+      "graphic_elements": [
+        "simple callout",
+        "subtle divider"
+      ]
+    },
+    "image_prompt": "Create a clean educational Instagram Feed visual with one focal point, accurate device representation, concise English copy, and clear mobile readability.",
+    "negative_prompt": "No fabricated interface, unsupported specifications, misleading logos, distorted device details, or unreadable text."
+  },
+  "copywriting": {
+    "headline": "Make every shot count",
+    "subheadline": "A clearer way to understand your camera tools",
+    "body_copy": "Explore the feature and learn when it can help.",
+    "caption": "A practical guide to understanding your iPhone camera. Check the official support information for model-specific availability.",
+    "cta": "Explore the feature",
+    "hashtags": [
+      "#iPhoneTips",
+      "#AppleMalaysia"
+    ]
+  },
+  "format_specification": {
+    "format_id": "single_image",
+    "placement": "instagram_feed",
+    "aspect_ratio": "4:5",
+    "generation_canvas": {
+      "width_px": 2048,
+      "height_px": 2560,
+      "profile_id": "portrait_2k_long_edge_2560"
+    },
+    "export_canvas": {
+      "width_px": 1080,
+      "height_px": 1350
+    },
+    "safe_area": "Keep essential copy and product details comfortably inside the canvas."
+  },
+  "assets": {
+    "required_assets": [
+      "Accurate product image"
+    ],
+    "reference_assets": [],
+    "usage_rights_status": "not_required"
+  },
+  "compliance": {
+    "source_verification_status": "verified",
+    "brand_affiliation_checked": true,
+    "asset_rights_status": "not_required",
+    "factual_claims": [
+      "Feature availability must be checked for the exact model and software version."
+    ],
+    "warnings": [
+      "Independent content project; not affiliated with Apple."
+    ],
+    "human_review_required": true
+  },
+  "quality_control": {
+    "status": "review_ready",
+    "schema_validation": "passed",
+    "checks": {
+      "category_format": true,
+      "locale": true,
+      "generation_dimensions": true,
+      "factual_claims": true,
+      "brand_safety": true,
+      "asset_rights": true
+    },
+    "human_approval_required": true
+  }
+}

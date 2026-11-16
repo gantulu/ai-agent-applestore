@@ -8,15 +8,19 @@ Create a ChatGPT Project named **Apple Instagram AI Agent**.
 
 Copy the complete contents of `prompts/master_prompt.md` into Project instructions.
 
-## Reference files
+## Required reference files
 
-Upload:
+Upload these **five mandatory files** as Project sources:
+
 1. `kategori.md`
 2. `config/category_direction.json`
 3. `config/format_specification.json`
 4. `schemas/input.schema.json`
 5. `schemas/output.schema.json`
-6. `docs/output-contract.md` (recommended)
+
+## Optional reference file
+
+- `docs/output-contract.md` — optional explanatory documentation; it does not replace the authoritative JSON Schema.
 
 ## Keep files current
 
