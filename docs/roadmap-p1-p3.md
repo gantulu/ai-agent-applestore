@@ -25,11 +25,11 @@ This roadmap hardens the existing agent without introducing a backend runtime, e
 **Goal:** keep project setup and repository operations consistent and maintainable.
 
 - [x] Clarify five mandatory Project reference files and one optional documentation file.
-- [ ] Synchronise README, setup guide, schema, and configuration documentation.
-- [ ] Correct category document update metadata.
-- [ ] Audit historical branches; delete merged branches only after explicit approval.
-- [ ] Verify `main` branch protection and required CI checks.
-- [ ] Document release and maintenance procedures.
+- [x] Synchronise README, setup guide, schema, and configuration documentation.
+- [x] Correct category document update metadata.
+- [x] Audit historical branches and identify five cleanup candidates; deletion remains pending execution.
+- [x] Verify current `main` protection state; protection is disabled and activation remains pending.
+- [x] Document release and maintenance procedures.
 
 **Acceptance:** setup instructions are unambiguous, active configuration is clearly identified, and repository governance is verified.
 
