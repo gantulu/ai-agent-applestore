@@ -59,100 +59,12 @@
           "minLength": 1
         },
         "primary_category": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "category_id": {
-              "type": "string",
-              "enum": [
-                "CAT-001",
-                "CAT-002",
-                "CAT-003",
-                "CAT-004",
-                "CAT-005",
-                "CAT-006",
-                "CAT-007"
-              ]
-            },
-            "category_slug": {
-              "type": "string",
-              "enum": [
-                "product",
-                "promotion",
-                "lifestyle",
-                "education",
-                "news",
-                "comparison",
-                "tips"
-              ]
-            },
-            "category_name": {
-              "type": "string",
-              "enum": [
-                "Product",
-                "Promotion",
-                "Lifestyle",
-                "Education",
-                "News",
-                "Comparison",
-                "Tips"
-              ]
-            }
-          },
-          "required": [
-            "category_id",
-            "category_slug",
-            "category_name"
-          ]
+          "$ref": "#/$defs/category"
         },
         "secondary_category": {
           "anyOf": [
             {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "category_id": {
-                  "type": "string",
-                  "enum": [
-                    "CAT-001",
-                    "CAT-002",
-                    "CAT-003",
-                    "CAT-004",
-                    "CAT-005",
-                    "CAT-006",
-                    "CAT-007"
-                  ]
-                },
-                "category_slug": {
-                  "type": "string",
-                  "enum": [
-                    "product",
-                    "promotion",
-                    "lifestyle",
-                    "education",
-                    "news",
-                    "comparison",
-                    "tips"
-                  ]
-                },
-                "category_name": {
-                  "type": "string",
-                  "enum": [
-                    "Product",
-                    "Promotion",
-                    "Lifestyle",
-                    "Education",
-                    "News",
-                    "Comparison",
-                    "Tips"
-                  ]
-                }
-              },
-              "required": [
-                "category_id",
-                "category_slug",
-                "category_name"
-              ]
+              "$ref": "#/$defs/category"
             },
             {
               "type": "null"
@@ -650,5 +562,260 @@
     "assets",
     "compliance",
     "quality_control"
+  ],
+  "description": "Strict ChatGPT-native content and image-prompt output contract. Exactly ten top-level keys are permitted; human approval remains mandatory.",
+  "$defs": {
+    "category": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-001"
+            },
+            "category_slug": {
+              "const": "product"
+            },
+            "category_name": {
+              "const": "Product"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-002"
+            },
+            "category_slug": {
+              "const": "promotion"
+            },
+            "category_name": {
+              "const": "Promotion"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-003"
+            },
+            "category_slug": {
+              "const": "lifestyle"
+            },
+            "category_name": {
+              "const": "Lifestyle"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-004"
+            },
+            "category_slug": {
+              "const": "education"
+            },
+            "category_name": {
+              "const": "Education"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-005"
+            },
+            "category_slug": {
+              "const": "news"
+            },
+            "category_name": {
+              "const": "News"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-006"
+            },
+            "category_slug": {
+              "const": "comparison"
+            },
+            "category_name": {
+              "const": "Comparison"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "category_id": {
+              "const": "CAT-007"
+            },
+            "category_slug": {
+              "const": "tips"
+            },
+            "category_name": {
+              "const": "Tips"
+            }
+          },
+          "required": [
+            "category_id",
+            "category_slug",
+            "category_name"
+          ]
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "format_specification": {
+            "properties": {
+              "format_id": {
+                "const": "single_image"
+              }
+            },
+            "required": [
+              "format_id"
+            ]
+          }
+        },
+        "required": [
+          "format_specification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "format_specification": {
+            "properties": {
+              "placement": {
+                "const": "instagram_feed"
+              },
+              "aspect_ratio": {
+                "const": "4:5"
+              },
+              "generation_canvas": {
+                "properties": {
+                  "width_px": {
+                    "const": 2048
+                  },
+                  "height_px": {
+                    "const": 2560
+                  }
+                }
+              },
+              "export_canvas": {
+                "properties": {
+                  "width_px": {
+                    "const": 1080
+                  },
+                  "height_px": {
+                    "const": 1350
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "format_specification": {
+            "properties": {
+              "format_id": {
+                "const": "story"
+              }
+            },
+            "required": [
+              "format_id"
+            ]
+          }
+        },
+        "required": [
+          "format_specification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "format_specification": {
+            "properties": {
+              "placement": {
+                "const": "instagram_story"
+              },
+              "aspect_ratio": {
+                "const": "9:16"
+              },
+              "generation_canvas": {
+                "properties": {
+                  "width_px": {
+                    "const": 1440
+                  },
+                  "height_px": {
+                    "const": 2560
+                  }
+                }
+              },
+              "export_canvas": {
+                "properties": {
+                  "width_px": {
+                    "const": 1080
+                  },
+                  "height_px": {
+                    "const": 1920
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   ]
 }

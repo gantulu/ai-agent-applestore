@@ -6,15 +6,20 @@
   "properties": {
     "topic": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "description": "Content topic or subject. Required."
     },
     "objective": {
       "type": "string",
-      "default": "awareness"
+      "minLength": 1,
+      "default": "awareness",
+      "description": "Primary objective, such as awareness, engagement, consideration, conversion, or retention."
     },
     "audience": {
       "type": "string",
-      "default": "Apple users and prospective buyers in Malaysia"
+      "minLength": 1,
+      "default": "Apple users and prospective buyers in Malaysia",
+      "description": "Intended audience or segment in the Malaysia market."
     },
     "category": {
       "anyOf": [
@@ -42,14 +47,16 @@
           "type": "null"
         }
       ],
-      "default": "auto"
+      "default": "auto",
+      "description": "Use auto for agent classification, or supply one canonical category slug or CAT ID."
     },
     "format": {
       "type": "string",
       "enum": [
         "single_image",
         "story"
-      ]
+      ],
+      "description": "Required generator format. Other editorial formats are not supported in V1.0."
     },
     "product_name": {
       "anyOf": [
@@ -60,7 +67,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Official product name, if known."
     },
     "product_model": {
       "anyOf": [
@@ -71,7 +79,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Exact product model, if known."
     },
     "product_generation": {
       "anyOf": [
@@ -82,7 +91,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Product generation or release generation, if known."
     },
     "product_configuration": {
       "anyOf": [
@@ -93,7 +103,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "Relevant configuration such as storage, size, or finish, if known."
     },
     "key_message": {
       "anyOf": [
@@ -104,7 +115,8 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "The main message the content should communicate."
     },
     "campaign_details": {
       "anyOf": [
@@ -115,32 +127,43 @@
         {
           "type": "null"
         }
-      ]
+      ],
+      "description": "User-supplied campaign details. Claims still require verification before use."
     },
     "supplied_facts": {
       "type": "array",
       "items": {
         "type": "string",
         "minLength": 1
-      }
+      },
+      "default": [],
+      "description": "Facts explicitly supplied by the user. Treat as supplied context, not automatically verified evidence."
     },
     "source_urls": {
       "type": "array",
       "items": {
         "type": "string",
+        "format": "uri",
         "minLength": 1
-      }
+      },
+      "default": [],
+      "description": "Source URLs for factual verification."
     },
     "asset_urls": {
       "type": "array",
       "items": {
         "type": "string",
+        "format": "uri",
         "minLength": 1
-      }
+      },
+      "default": [],
+      "description": "Reference asset URLs. Usage rights must still be checked."
     }
   },
   "required": [
     "topic",
     "format"
-  ]
+  ],
+  "$id": "https://github.com/gantulu/ai-agent-applestore/blob/main/schemas/input.schema.json",
+  "description": "User brief for the ChatGPT-native Apple Instagram content agent. Market, platform, and audience-facing locale are fixed by project configuration."
 }

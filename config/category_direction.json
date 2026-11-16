@@ -1,7 +1,7 @@
 {
-  "config_version": "1.0.0",
+  "config_version": "1.1.0",
   "config_id": "apple_instagram_category_direction",
-  "description": "Canonical editorial and visual direction for the seven approved Apple Instagram content categories.",
+  "description": "Canonical editorial, classification, and visual direction for the seven approved Apple Instagram content categories.",
   "market": "MY",
   "platform": "instagram",
   "content_locale": "en-MY",
@@ -32,7 +32,9 @@
       "news",
       "comparison",
       "tips"
-    ]
+    ],
+    "secondary_category_policy": "Use no secondary category unless it contributes a distinct supporting objective; never use it to represent a second topic that can stand alone.",
+    "tie_breaker": "Classify by the dominant audience benefit and CTA. Feature explanation means education; a short action to try means tips; evaluating alternatives means comparison; introducing one product means product; a confirmed update means news; a verified transaction benefit means promotion; real-life use means lifestyle."
   },
   "categories": [
     {
@@ -388,6 +390,50 @@
         "Use Apple Support for technical instructions.",
         "State compatibility limitations and avoid presenting model-specific features as universal."
       ]
+    }
+  ],
+  "classification_matrix": [
+    {
+      "category_id": "CAT-001",
+      "category_slug": "product",
+      "dominant_signal": "Introduce or showcase one product, its design, capabilities, or verified specifications.",
+      "do_not_select_when": "The dominant purpose is an offer, instruction, practical tip, comparison, confirmed announcement, or lifestyle story."
+    },
+    {
+      "category_id": "CAT-002",
+      "category_slug": "promotion",
+      "dominant_signal": "Communicate a verified purchase offer, price benefit, campaign, or transaction incentive.",
+      "do_not_select_when": "Offer, price, validity, eligibility, or terms are not confirmed."
+    },
+    {
+      "category_id": "CAT-003",
+      "category_slug": "lifestyle",
+      "dominant_signal": "Show a plausible human experience or real-life context in which an Apple device is naturally used.",
+      "do_not_select_when": "The main purpose is to explain, instruct, compare, announce news, or communicate an offer."
+    },
+    {
+      "category_id": "CAT-004",
+      "category_slug": "education",
+      "dominant_signal": "Explain how a product, feature, app, technology, or ecosystem works and provide understanding or context.",
+      "do_not_select_when": "The main purpose is a short actionable tip with little explanation."
+    },
+    {
+      "category_id": "CAT-005",
+      "category_slug": "news",
+      "dominant_signal": "Report a timely, confirmed announcement, release, event, or Malaysia-market update.",
+      "do_not_select_when": "The information is a rumour, prediction, unverified claim, evergreen tutorial, or general product introduction."
+    },
+    {
+      "category_id": "CAT-006",
+      "category_slug": "comparison",
+      "dominant_signal": "Evaluate two or more identified products or configurations using comparable evidence to support a choice.",
+      "do_not_select_when": "Only one product is introduced or the comparison lacks equivalent, verified information."
+    },
+    {
+      "category_id": "CAT-007",
+      "category_slug": "tips",
+      "dominant_signal": "Give concise, practical actions the audience can try to use a device or feature more effectively.",
+      "do_not_select_when": "The main purpose is conceptual or technical explanation rather than an immediately actionable step."
     }
   ]
 }
