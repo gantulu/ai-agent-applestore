@@ -90,7 +90,7 @@ def _apply_runtime_guards(output: dict[str, Any], request: dict[str, Any], confi
     output["compliance"]["asset_rights_status"] = "pending" if rights_pending else "not_required"
 
     claims = output["compliance"].get("factual_claims", [])
-    has_claims = bool(claims or request.get("supplied_facts") or request.get("source_urls"))
+    has_claims = bool(claims or request.get("product_name") or request.get("supplied_facts") or request.get("source_urls"))
     output["compliance"]["source_verification_status"] = "unverified" if has_claims else "not_required"
     warnings = list(output["compliance"].get("warnings", []))
     if has_claims:
