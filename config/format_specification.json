@@ -5,7 +5,6 @@
   "platform": "instagram",
   "market": "MY",
   "content_locale": "en-MY",
-  "default_format": "single_image",
   "allowed_formats": {
     "single_image": {
       "format_id": "single_image",
