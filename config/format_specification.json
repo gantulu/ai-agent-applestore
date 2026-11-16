@@ -1,0 +1,73 @@
+{
+  "config_version": "1.0.0",
+  "config_id": "apple_instagram_format_specification",
+  "description": "Allowlisted Instagram generation formats for Apple Instagram AI Agent V1.0.",
+  "platform": "instagram",
+  "market": "MY",
+  "content_locale": "en-MY",
+  "default_format": "single_image",
+  "allowed_formats": {
+    "single_image": {
+      "format_id": "single_image",
+      "display_name": "Single Image",
+      "placement": "instagram_feed",
+      "aspect_ratio": "4:5",
+      "canvas": {
+        "width_px": 1080,
+        "height_px": 1350
+      },
+      "export": {
+        "format": "PNG or high-quality JPEG",
+        "color_mode": "RGB"
+      },
+      "creative_rules": [
+        "Communicate one primary message with one dominant focal point.",
+        "Use one hero visual and concise on-image copy.",
+        "Keep the headline, product, and supporting information visually hierarchical.",
+        "Move detailed explanations, caveats, and source context into the caption when appropriate.",
+        "Ensure text remains legible at mobile display size."
+      ],
+      "layout_guidance": {
+        "composition": "Single focal point, intentional negative space, balanced margins, and clear hierarchy.",
+        "text_density": "Low; avoid paragraphs and dense specification lists.",
+        "cta": "Use a concise CTA only when a real next action is available.",
+        "safe_area": "Keep essential text and visual details comfortably inside the canvas; do not place critical information against edges."
+      }
+    },
+    "story": {
+      "format_id": "story",
+      "display_name": "Instagram Story",
+      "placement": "instagram_story",
+      "aspect_ratio": "9:16",
+      "canvas": {
+        "width_px": 1080,
+        "height_px": 1920
+      },
+      "export": {
+        "format": "PNG or high-quality JPEG",
+        "color_mode": "RGB"
+      },
+      "creative_rules": [
+        "Design for full-screen vertical mobile viewing.",
+        "Lead with one clear hook or message.",
+        "Use short, immediately understandable copy.",
+        "Use a single frame by default; create a sequence only when explicitly requested.",
+        "Keep interactive prompts or CTA elements only when the relevant action is available."
+      ],
+      "layout_guidance": {
+        "composition": "Vertical hierarchy with a clear focal point and deliberate top/bottom breathing room.",
+        "text_density": "Very low; prioritise quick comprehension.",
+        "cta": "Place the CTA where it remains clear of platform interface overlays.",
+        "safe_area": "Keep essential text, logos, and product details away from top and bottom interface zones; verify against current Instagram placement previews before publishing."
+      }
+    }
+  },
+  "global_constraints": [
+    "Only single_image and story are valid generator format_id values in V1.0.",
+    "Carousel, Reels, infographic, UGC, and other editorial formats are not supported generator outputs in V1.0.",
+    "Do not distort product dimensions, colours, ports, cameras, screens, logos, or interface details.",
+    "Do not fabricate UI, product assets, offer badges, prices, availability, or claims.",
+    "Use only assets with appropriate usage rights and permissions.",
+    "Human review is required before publication."
+  ]
+}
