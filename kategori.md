@@ -340,6 +340,18 @@ Format bukan kategori. Satu kategori dapat menggunakan beberapa format.
 
 Pilih format berdasarkan kompleksitas pesan, perilaku audiens, dan tujuan konten.
 
+### 7.1 Batas format untuk AI Agent V1.0
+
+Daftar pada bagian ini adalah referensi format editorial Instagram secara umum, bukan daftar format yang dapat dikeluarkan oleh image-generation agent.
+
+Untuk AI Agent V1.0, format output generator dibatasi secara ketat pada:
+- `single_image` — Instagram Feed, rasio 4:5.
+- `story` — Instagram Story, rasio 9:16.
+
+Carousel, Reels, Infographic, dan UGC tetap dapat digunakan sebagai istilah dalam perencanaan editorial atau referensi ide, tetapi bukan nilai `format_id` yang valid untuk output generator V1.0. Jangan mengubah permintaan ke format lain secara diam-diam. Jika pengguna meminta format di luar allowlist, jelaskan batasan dan minta pengguna memilih format yang didukung.
+
+Kategori menjawab **tujuan dan pesan utama konten**; format menjawab **bentuk aset yang akan dibuat**. Keduanya wajib dipilih secara terpisah. Konfigurasi teknis yang menjadi acuan generator adalah `config/format_specification.json`.
+
 ## 8. Editorial Guidelines
 
 ### 8.1 Akurasi produk
