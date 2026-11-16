@@ -1,120 +1,111 @@
 # Apple Instagram AI Agent
 
-Dokumentasi utama untuk AI Agent pembuat konten Instagram produk dan ekosistem Apple dengan target audiens Malaysia.
+AI Agent untuk menghasilkan image-generation prompts Instagram bagi projek kandungan produk dan ekosistem Apple dengan sasaran pasaran Malaysia.
 
 ## Project baseline
 
 | Item | Standard |
 |---|---|
-| Project | Apple Instagram AI Agent |
-| Market | Malaysia |
-| Platform | Instagram |
-| Content language | English (Malaysia audience; `en-MY`) |
-| AI role | Hybrid — Strategist, Creator, Editor |
-| Primary categories | 7 |
-| Supported generation formats | `single_image`, `story` |
-| Output contract | Strict JSON |
-| Output schema version | `1.0.0` |
+| Agent | One Hybrid Agent: Strategist → Creator → Editor |
+| Market / language | Malaysia / English (en-MY) |
+| Canonical categories | 7, from kategori.md V2.1.0 |
+| Instagram formats | single_image (Feed), story (Story) |
+| Generation profile | Portrait 2K long edge 2560 px |
+| Output contract | Strict JSON Schema, version 1.0.0 |
+| Runtime | Python 3.11+ |
+| Orchestration | GitHub Actions |
+| Model API | OpenAI Responses API (configurable model) |
+| Publication | Draft only; human approval required |
 
-> **Brand and affiliation:** “Apple Store Malaysia” is the project/account context. Do not claim to be Apple, an Apple-owned channel, an Apple Authorized Reseller, or officially affiliated with Apple unless the relevant status and permission have been independently verified.
+**Brand disclaimer:** This is an independent Apple-product content project. Do not claim Apple ownership, endorsement, or authorized-reseller status unless separately verified and expressly permitted.
 
-## Canonical content categories
+## Canonical categories
 
-The approved category taxonomy is defined in [kategori.md](./kategori.md), version 2.1.0. Its identifiers are canonical for this project.
+The source of truth is [kategori.md](./kategori.md) V2.1.0.
 
-| Category ID | Slug | Category |
+| ID | Slug | Category |
 |---|---|---|
-| CAT-001 | `product` | Product |
-| CAT-002 | `promotion` | Promotion |
-| CAT-003 | `lifestyle` | Lifestyle |
-| CAT-004 | `education` | Education |
-| CAT-005 | `news` | News |
-| CAT-006 | `comparison` | Comparison |
-| CAT-007 | `tips` | Tips |
+| CAT-001 | product | Product |
+| CAT-002 | promotion | Promotion |
+| CAT-003 | lifestyle | Lifestyle |
+| CAT-004 | education | Education |
+| CAT-005 | news | News |
+| CAT-006 | comparison | Comparison |
+| CAT-007 | tips | Tips |
 
-Rules:
-- Every content item has exactly one primary category.
-- A secondary category is optional and limited to one.
-- Category IDs and slugs must be treated as separate fields.
-- Category selection is based on the primary editorial objective, not merely the featured product.
-- Do not reuse the superseded category-ID mapping from older documentation.
+One primary category is mandatory; one secondary category is optional. Category is selected by editorial objective, not merely by the product shown.
 
-## Supported Instagram formats
+## Formats and resolution
 
-The AI generation system supports only these two format identifiers in V1.0:
+| Format | 2K generation canvas | Instagram export canvas | Ratio |
+|---|---:|---:|---:|
+| Feed / single_image | 2048 × 2560 | 1080 × 1350 | 4:5 |
+| Story / story | 1440 × 2560 | 1080 × 1920 | 9:16 |
 
-| Format ID | Placement | Canvas |
-|---|---|---|
-| `single_image` | Instagram Feed | 4:5 portrait, 1080 × 1350 px |
-| `story` | Instagram Story | 9:16 vertical, 1080 × 1920 px |
+The 2K values define this project's portrait generation profile (2560 px long edge). They do not guarantee native output support from every image provider. This repository generates the text prompt and target dimensions; it does not generate or upscale image files.
 
-Other formats mentioned in the editorial taxonomy are reference material only. They are not valid generator output formats in V1.0.
+## Quick start
 
-## AI role and responsibilities
+Requirements: Python 3.11+ and an OpenAI API key.
 
-The Hybrid Agent performs three coordinated responsibilities:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
 
-1. **Strategist** — selects the content objective, audience angle, primary category, product focus, and format.
-2. **Creator** — develops the creative concept, visual direction, headline, caption, CTA, and relevant hashtags.
-3. **Editor** — checks factual support, English quality, category/format compliance, brand/legal safeguards, and output validity.
+export OPENAI_API_KEY="your-api-key"
+export OPENAI_MODEL="gpt-6-luna"  # optional; override to a model enabled for your API project
 
-These are responsibilities within one agent and one generation workflow, not three separately deployed agents.
+python3 -m src.main \
+  --input inputs/request.example.json \
+  --output outputs/prompt-output.json
+```
 
-## Language and localization
+The generated file is validated against schemas/output.schema.json. The runtime does not browse or independently verify facts, so factual claims are marked for human review.
 
-- All generated audience-facing copy must be in English, localized for the Malaysia market (`en-MY`).
-- Use Malaysian market context only when supported by verified information.
-- Use MYR only when a Malaysia-specific price is supplied or verified.
-- Do not translate product names, official feature names, or interface labels in ways that change their meaning.
-- Documentation may remain in Indonesian; this does not change the English content-output requirement.
+## Generate from GitHub Actions
 
-## Editorial and factual safeguards
+1. In GitHub, open Settings → Secrets and variables → Actions.
+2. Add repository secret OPENAI_API_KEY.
+3. Optionally add repository variable OPENAI_MODEL; default is gpt-6-luna.
+4. Open Actions → Generate Instagram Image Prompt → Run workflow.
+5. Enter the topic, category (or auto), format, and optional product details.
+6. Download the instagram-prompt artifact. It contains prompt-output.json.
 
-- Prefer official Apple Malaysia pages for local product, price, availability, and market information.
-- Use Apple Support for technical instructions, compatibility, and software behavior.
-- Use Apple Newsroom for official announcements.
-- Record specific source URLs and the date checked when factual claims require verification.
-- Never invent specifications, prices, promotions, stock, launch dates, compatibility, testimonials, or performance claims.
-- Treat rumors and third-party reporting as such; never present them as official Apple announcements.
-- Do not imply official Apple affiliation or authorization without verification.
-- Use visual, photographic, video, font, and music assets only when usage rights permit.
+The manual workflow is available after .github/workflows/generate-prompt.yml is merged into the default branch. See [GitHub Actions guide](./docs/github-actions.md).
 
-## Architecture
+## Local validation
 
-The approved modular architecture is documented in [docs/architecture.md](./docs/architecture.md).
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m json.tool schemas/input.schema.json > /dev/null
+python3 -m json.tool schemas/output.schema.json > /dev/null
+python3 -m unittest discover -s tests -v
+```
 
-The generation system is composed of:
-- One global Master Prompt.
-- One category-direction configuration containing seven categories.
-- One format-specification configuration containing two supported formats.
-- One strict JSON output contract.
-- Validation and quality-control checks.
+CI runs the same tests on pushes and pull requests. The tests do not call the paid model API.
 
-Category and format configurations must remain independent. Do not create separate master prompts for every category/format combination.
-
-## Repository documentation
+## Repository map
 
 | Path | Purpose |
 |---|---|
-| `README.md` | Project baseline and entry point |
-| `kategori.md` | Canonical seven-category taxonomy and visual/editorial guidance |
-| `docs/architecture.md` | Approved V1.0 architecture and boundaries |
-| `contoh/public.md` | Existing SQL schema/seed reference; not modified by Phase 1 |
+| README.md | Project baseline and setup |
+| kategori.md | Canonical seven-category taxonomy |
+| prompts/master_prompt.md | Global Hybrid Agent instructions |
+| config/category_direction.json | Seven modular category directions |
+| config/format_specification.json | Feed/Story and 2K/export dimensions |
+| schemas/input.schema.json | Generation request contract |
+| schemas/output.schema.json | Strict ten-key output contract |
+| src/ | Configuration, prompt assembly, provider, generator, validators |
+| tests/ | Contract, configuration, generation, and mapping tests |
+| .github/workflows/ | CI validation and manual prompt generation |
+| docs/database-compatibility.md | Legacy SQL category mapping and write boundary |
 
-## Implementation boundaries
+## Safety and scope
 
-Phase 1 aligns documentation only. It does not:
-- Create or modify database tables, records, or migrations.
-- Modify SQL seed data or webhook behavior.
-- Implement prompts, JSON schemas, runtime code, or tests.
-- Publish content to Instagram.
-- Change secrets, integrations, deployment, or automation settings.
-
-Those items require their own implementation phases and verification.
-
-## Versioning
-
-- Architecture baseline: Apple Instagram AI Agent V1.0.
-- Category source: Apple Content Categories V2.1.0.
-- Generation language: English (`en-MY`).
-- Supported formats: `single_image`, `story`.
+- API keys are read only from environment variables / GitHub Secrets; never commit credentials.
+- GitHub Actions uses read-only contents permission and actions pinned to full commit SHAs.
+- The runtime does not auto-publish, schedule, or send Instagram content.
+- The legacy SQL queue requires an actual image URL and schedule date/time. Prompt JSON alone is not a publishable queue record; no database write is performed.
+- Product, price, compatibility, news, and promotion claims require source verification and human review.
+- See [architecture](./docs/architecture.md), [output contract](./docs/output-contract.md), and [database compatibility](./docs/database-compatibility.md).
