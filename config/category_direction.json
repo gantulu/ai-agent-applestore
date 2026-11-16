@@ -1,0 +1,393 @@
+{
+  "config_version": "1.0.0",
+  "config_id": "apple_instagram_category_direction",
+  "description": "Canonical editorial and visual direction for the seven approved Apple Instagram content categories.",
+  "market": "MY",
+  "platform": "instagram",
+  "content_locale": "en-MY",
+  "source_document": {
+    "path": "kategori.md",
+    "version": "2.1.0",
+    "section": "AI Agent V1.0 alignment and category/visual direction"
+  },
+  "selection_rules": {
+    "primary_category": "required_exactly_one",
+    "secondary_category": "optional_maximum_one",
+    "selection_basis": "Choose by the dominant editorial objective, key message, and audience benefit; never by the featured device alone.",
+    "precedence": "Use the category decision rules in kategori.md when multiple categories appear plausible.",
+    "allowed_category_ids": [
+      "CAT-001",
+      "CAT-002",
+      "CAT-003",
+      "CAT-004",
+      "CAT-005",
+      "CAT-006",
+      "CAT-007"
+    ],
+    "allowed_category_slugs": [
+      "product",
+      "promotion",
+      "lifestyle",
+      "education",
+      "news",
+      "comparison",
+      "tips"
+    ]
+  },
+  "categories": [
+    {
+      "category_id": "CAT-001",
+      "category_slug": "product",
+      "category_name": "Product",
+      "objective": "Product awareness and consideration",
+      "editorial_focus": "Introduce a specific Apple product or product family, explaining its verified design, capabilities, features, and practical value.",
+      "audience_question": "What is this product, and what can it do?",
+      "content_angles": [
+        "Product spotlight or showcase",
+        "New product introduction",
+        "Verified product features and design details",
+        "What's in the box, only when the exact retail configuration is verified",
+        "Apple ecosystem integration"
+      ],
+      "visual_identity": {
+        "concept": "Premium Product Showcase",
+        "mood": [
+          "premium",
+          "minimal",
+          "sophisticated",
+          "precise"
+        ],
+        "dominant_palette": [
+          "silver",
+          "graphite",
+          "soft white",
+          "cool grey"
+        ],
+        "lighting": "Soft diffused studio lighting, balanced highlights, gentle shadows, and controlled reflections.",
+        "composition": "Make the product the hero with deliberate negative space; use close-ups for verified material, camera, display, or port details.",
+        "typography": "Short, confident, elegant headline with minimal supporting copy.",
+        "graphic_elements": [
+          "thin rules",
+          "verified specification labels",
+          "subtle detail callouts",
+          "simple information panels"
+        ],
+        "avoid": [
+          "excessive decoration",
+          "distracting reflections",
+          "overloaded specifications",
+          "visual effects that alter product appearance"
+        ]
+      },
+      "editorial_checks": [
+        "Verify exact product name, model, generation, configuration, colour, features, and compatibility.",
+        "Use official sources for product specifications and Malaysia-market details.",
+        "Do not invent price, stock, promotion, warranty, or included accessories."
+      ]
+    },
+    {
+      "category_id": "CAT-002",
+      "category_slug": "promotion",
+      "category_name": "Promotion",
+      "objective": "Conversion and sales activation",
+      "editorial_focus": "Communicate a real, approved offer, purchase programme, campaign, or transaction benefit with transparent conditions.",
+      "audience_question": "What verified benefit is available, and what should the audience do next?",
+      "content_angles": [
+        "Special or seasonal campaign",
+        "Education pricing only when current eligibility and Malaysia availability are verified",
+        "Trade-in only when programme and terms are confirmed",
+        "Instalment plans only with verified provider and terms",
+        "Gift guide or limited-time offer only when dates and conditions are supplied",
+        "Verified purchasing or store-service information"
+      ],
+      "visual_identity": {
+        "concept": "Commercial Campaign",
+        "mood": [
+          "energetic",
+          "persuasive",
+          "clear",
+          "campaign-driven"
+        ],
+        "dominant_palette": [
+          "white",
+          "black",
+          "one approved campaign accent"
+        ],
+        "lighting": "Bright commercial lighting with clear contrast and legible offer information.",
+        "composition": "Prioritise the verified headline and benefit; let the product support the message; keep the CTA clearly positioned.",
+        "typography": "Strong headline with clear hierarchy for verified price or benefit details.",
+        "graphic_elements": [
+          "offer badge",
+          "price block",
+          "campaign frame",
+          "validity period",
+          "CTA"
+        ],
+        "avoid": [
+          "false urgency",
+          "unverified countdowns",
+          "unsupported discounts",
+          "hidden terms",
+          "fabricated eligibility or stock claims"
+        ]
+      },
+      "editorial_checks": [
+        "Require source-backed or user-supplied approved offer details before making a promotional claim.",
+        "Verify price, original price if shown, savings arithmetic, dates, eligibility, exclusions, stock, and terms.",
+        "If a critical offer detail is missing, omit it or mark the content as requiring confirmation; never estimate."
+      ]
+    },
+    {
+      "category_id": "CAT-003",
+      "category_slug": "lifestyle",
+      "category_name": "Lifestyle",
+      "objective": "Awareness and engagement",
+      "editorial_focus": "Show realistic ways Apple devices fit into everyday life, work, education, entertainment, travel, fitness, and creativity.",
+      "audience_question": "How does the product naturally fit into a real user's life?",
+      "content_angles": [
+        "Work or study routines",
+        "Travel and everyday moments",
+        "Fitness and wellbeing routines without unsupported health claims",
+        "Creative workflows",
+        "Digital nomad or home setups"
+      ],
+      "visual_identity": {
+        "concept": "Human Experience",
+        "mood": [
+          "warm",
+          "aspirational",
+          "authentic",
+          "human"
+        ],
+        "dominant_palette": [
+          "natural beige",
+          "warm grey",
+          "natural white",
+          "earth tones"
+        ],
+        "lighting": "Natural daylight, soft window light, and ambient lighting.",
+        "composition": "Use environmental storytelling; people and their activity provide context while the device appears naturally in use.",
+        "typography": "Light editorial typography that does not dominate the photograph.",
+        "graphic_elements": [
+          "minimal caption overlay",
+          "editorial frame",
+          "short narrative cue"
+        ],
+        "avoid": [
+          "staged or artificial poses",
+          "unrealistic device use",
+          "hard-sell poster treatment",
+          "unsupported outcome promises"
+        ]
+      },
+      "editorial_checks": [
+        "Keep the use case plausible and the device interaction physically realistic.",
+        "Do not imply a guaranteed productivity, fitness, education, or creative outcome.",
+        "Use user-generated content only with appropriate permission and disclosure."
+      ]
+    },
+    {
+      "category_id": "CAT-004",
+      "category_slug": "education",
+      "category_name": "Education",
+      "objective": "Education, trust, and consideration",
+      "editorial_focus": "Explain how a product, feature, app, technology, operating system, or part of the Apple ecosystem works in a structured and understandable way.",
+      "audience_question": "How does this feature or technology work, and why is it useful?",
+      "content_angles": [
+        "Feature explanations",
+        "iOS, iPadOS, macOS, and watchOS concepts",
+        "Apple ecosystem explanations",
+        "App and workflow guidance",
+        "Student and learning use cases",
+        "Service or session information only when locally confirmed"
+      ],
+      "visual_identity": {
+        "concept": "Technical Explainer",
+        "mood": [
+          "clear",
+          "intelligent",
+          "informative",
+          "systematic"
+        ],
+        "dominant_palette": [
+          "white",
+          "blue",
+          "light grey"
+        ],
+        "lighting": "Even lighting and clean visuals; prioritise legibility of diagrams and interfaces.",
+        "composition": "One main concept per frame; organise context, explanation, illustration, and takeaway in a logical sequence.",
+        "typography": "Readable sans-serif hierarchy with clear headings, subheadings, and concise body copy.",
+        "graphic_elements": [
+          "diagrams",
+          "annotations",
+          "numbered flows",
+          "accurate UI callouts",
+          "supporting icons"
+        ],
+        "avoid": [
+          "tiny text",
+          "unexplained jargon",
+          "fabricated or misleading interface simulations",
+          "unsupported compatibility statements"
+        ]
+      },
+      "editorial_checks": [
+        "Verify feature names, steps, menu labels, supported models, regional availability, and OS versions.",
+        "Use Apple Support as the primary technical reference.",
+        "Explain technical terms when needed and distinguish general concepts from device-specific instructions."
+      ]
+    },
+    {
+      "category_id": "CAT-005",
+      "category_slug": "news",
+      "category_name": "News",
+      "objective": "Awareness and timely engagement",
+      "editorial_focus": "Report confirmed Apple announcements, product launches, software updates, events, or relevant store activity with date and market context.",
+      "audience_question": "What is new, and what has been confirmed?",
+      "content_angles": [
+        "Official product announcements",
+        "Confirmed product availability",
+        "Apple event updates",
+        "Software releases and updates",
+        "Verified Malaysia store or event updates"
+      ],
+      "visual_identity": {
+        "concept": "Editorial Announcement",
+        "mood": [
+          "modern",
+          "timely",
+          "authoritative",
+          "editorial"
+        ],
+        "dominant_palette": [
+          "black",
+          "white",
+          "charcoal",
+          "limited accent"
+        ],
+        "lighting": "Editorial photography with controlled highlights; avoid dramatic effects that distort the story.",
+        "composition": "Use a concise headline, relevant supporting visual, date or context, and source attribution where appropriate.",
+        "typography": "Strong, concise editorial headline with clear hierarchy.",
+        "graphic_elements": [
+          "date stamp",
+          "source label",
+          "announcement tag",
+          "subtle dividers"
+        ],
+        "avoid": [
+          "sensational layouts",
+          "unlabelled rumours",
+          "visuals implying an official announcement without evidence"
+        ]
+      },
+      "editorial_checks": [
+        "Verify publication date, event date, country or market, product name, and announcement details.",
+        "Prioritise Apple Newsroom and relevant Apple Malaysia sources.",
+        "Clearly distinguish official announcements from media reports, rumours, and speculation; never present unconfirmed information as fact."
+      ]
+    },
+    {
+      "category_id": "CAT-006",
+      "category_slug": "comparison",
+      "category_name": "Comparison",
+      "objective": "Consideration and purchase decision support",
+      "editorial_focus": "Compare two or more clearly identified Apple products or configurations using equivalent, verified facts and relevant user needs.",
+      "audience_question": "Which option is more suitable for a clearly stated need?",
+      "content_angles": [
+        "iPhone model comparisons",
+        "MacBook Air and MacBook Pro comparisons",
+        "iPad model comparisons",
+        "Apple Watch comparisons",
+        "Storage, chip, or camera comparisons when data is comparable",
+        "Use-case-based buying guidance"
+      ],
+      "visual_identity": {
+        "concept": "Side-by-Side Analysis",
+        "mood": [
+          "objective",
+          "structured",
+          "precise",
+          "balanced"
+        ],
+        "dominant_palette": [
+          "neutral grey",
+          "white",
+          "blue accent"
+        ],
+        "lighting": "Match lighting, angle, scale, and crop across compared products.",
+        "composition": "Use a balanced split-screen or aligned columns; give each option equal visual weight.",
+        "typography": "Scannable labels and figures with exact model names.",
+        "graphic_elements": [
+          "comparison grid",
+          "specification cards",
+          "neutral markers",
+          "highlighted differences"
+        ],
+        "avoid": [
+          "biased image scale",
+          "non-equivalent data",
+          "cherry-picked specifications",
+          "absolute winner claims without context"
+        ]
+      },
+      "editorial_checks": [
+        "Identify exact model, generation, and configuration for every compared item.",
+        "Use comparable specifications, test conditions, and source quality.",
+        "Explain trade-offs and user context; do not claim one product is universally best."
+      ]
+    },
+    {
+      "category_id": "CAT-007",
+      "category_slug": "tips",
+      "category_name": "Tips",
+      "objective": "Engagement, retention, and product usage",
+      "editorial_focus": "Provide concise, actionable steps that help users use an Apple device more effectively, efficiently, or confidently.",
+      "audience_question": "What practical action can the user try right now?",
+      "content_angles": [
+        "iPhone features and shortcuts",
+        "Battery and power-use guidance",
+        "Camera tips",
+        "Productivity shortcuts",
+        "Mac keyboard shortcuts",
+        "iPad multitasking",
+        "Apple Watch tips",
+        "Storage, privacy, and security guidance"
+      ],
+      "visual_identity": {
+        "concept": "Practical How-To",
+        "mood": [
+          "friendly",
+          "simple",
+          "useful",
+          "approachable"
+        ],
+        "dominant_palette": [
+          "white",
+          "soft pastel",
+          "measured yellow accent"
+        ],
+        "lighting": "Bright natural lighting and a clean demonstration environment.",
+        "composition": "Use numbered steps, one clear action per frame, and a visible outcome where appropriate.",
+        "typography": "Short, direct, action-oriented instructions.",
+        "graphic_elements": [
+          "numbered steps",
+          "arrows",
+          "tap indicators",
+          "before-and-after",
+          "highlight areas"
+        ],
+        "avoid": [
+          "too many steps per frame",
+          "incorrect UI indicators",
+          "instructions without compatibility context",
+          "unsafe or misleading shortcuts"
+        ]
+      },
+      "editorial_checks": [
+        "Verify steps, menu names, supported models, regional restrictions, and relevant OS versions.",
+        "Use Apple Support for technical instructions.",
+        "State compatibility limitations and avoid presenting model-specific features as universal."
+      ]
+    }
+  ]
+}
