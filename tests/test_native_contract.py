@@ -83,7 +83,7 @@ class NativeAgentContractTests(unittest.TestCase):
         validator = Draft202012Validator(self.input_schema, format_checker=FormatChecker())
         for field in ("source_urls", "asset_urls"):
             with self.subTest(field=field):
-                brief = {"topic": "Camera features", "format": "single_image", field: ["not a uri"]}
+                brief = {"topic": "Camera features", "format": "single_image", field: ["http://[::1"]}
                 self.assertNotEqual(list(validator.iter_errors(brief)), [])
 
     def test_output_fixture_validates_as_complete_instance(self):
