@@ -40,8 +40,8 @@ jobs:
 
           echo "## P2 Maintenance Audit — Read Only" >> "$summary"
           echo "" >> "$summary"
-          printf -- '- Repository: %s\n' "$repo" >> "$summary"
-          printf -- '- Default branch: %s\n' "main" >> "$summary"
+          printf -- '- Repository: %s\\n' "$repo" >> "$summary"
+          printf -- '- Default branch: %s\\n' "main" >> "$summary"
           echo "- Mode: read-only; no refs, branches, tags, or rulesets are modified." >> "$summary"
           echo "" >> "$summary"
           echo "| Branch | Compare status | Ahead | Behind | Changed files |" >> "$summary"
@@ -56,7 +56,11 @@ jobs:
             ahead=$(jq -r '.ahead_by // 0' <<< "$compare")
             behind=$(jq -r '.behind_by // 0' <<< "$compare")
             files=$(jq -r '(.files // []) | length' <<< "$compare")
-            printf '| `%s` | %s | %s | %s | %s |\n' "$branch" "$status" "$ahead" "$behind" "$files" >> "$summary"
+            paths=$(jq -r '[.files[]?.filename] | join("; ")' <<< "$compare")
+            printf '| `%s` | %s | %s | %s | %s |\\n' "$branch" "$status" "$ahead" "$behind" "$files" >> "$summary"
+            if [ -n "$paths" ]; then
+              printf -- '- **%s**: %s\\n' "$branch" "$paths" >> "$summary"
+            fi
           done
 
           echo "" >> "$summary"
