@@ -1,54 +1,27 @@
-# GitHub Actions Operations
+# GitHub Actions — Validation Only
 
-## Workflows
+GitHub Actions validates repository files. It does **not** run the AI Agent, call ChatGPT, generate image prompts, or render images.
 
-### Validate AI Agent
-Path: .github/workflows/validate.yml
+## Workflow
 
-Runs on pushes to main and feat/**, and pull requests targeting main. It parses configuration/schema JSON and runs the unit tests. It does not call the model API and does not need the OpenAI secret.
+Path: `.github/workflows/validate.yml`
 
-### Generate Instagram Image Prompt
-Path: .github/workflows/generate-prompt.yml
+Triggers: pushes to `main` or `feat/**`, and pull requests targeting `main`.
 
-Manual workflow_dispatch only. Inputs:
-- topic (required)
-- category (auto or one of seven canonical slugs)
-- format (single_image or story)
-- product name (optional)
-- objective (optional)
-- audience (optional)
+Checks:
+- JSON syntax for category, format, legacy mapping, and schemas.
+- JSON Schema meta-validation and representative input/output contract tests.
+- Seven canonical categories and their mapping.
+- Two allowed formats and 2K/export dimensions.
 
-The workflow generates outputs/prompt-output.json and uploads it as an artifact for 14 days. It creates a text prompt; it does not render an image or publish to Instagram.
+Permissions are read-only (`contents: read`). No API secret or model credential is required.
 
-GitHub only exposes the manual Run workflow action when the workflow file is present on the default branch. See [workflow_dispatch documentation](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow).
+## Generate content
 
-## Required repository configuration
+Open the ChatGPT Project **Apple Instagram AI Agent** and submit a brief. ChatGPT executes the Hybrid Agent natively in the conversation.
 
-1. Open Settings → Secrets and variables → Actions.
-2. Add secret OPENAI_API_KEY with an API key belonging to the intended OpenAI Platform project.
-3. Optionally add variable OPENAI_MODEL; default is gpt-6-luna. Choose a model enabled for the API project.
-4. No API key should be stored in repository files, workflow inputs, or artifacts.
+Do not use GitHub Actions for generation. The former `generate-prompt.yml` workflow is removed.
 
-Optional environment variables:
-- OPENAI_BASE_URL — defaults to https://api.openai.com/v1.
-- OPENAI_TIMEOUT_SECONDS — defaults to 90.
+## Repository configuration
 
-## Security
-
-- Workflows declare contents: read; they do not need repository write permissions.
-- Actions are pinned to full commit SHAs.
-- Checkout uses persist-credentials: false.
-- Secrets are passed through environment variables and are never printed.
-- CI on pull requests does not access the model secret.
-
-GitHub references:
-- [Workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
-- [Triggering workflows](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)
-- [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
-
-## Troubleshooting
-
-- **Missing OPENAI_API_KEY:** add the repository secret and rerun.
-- **Model unavailable:** set OPENAI_MODEL to a model enabled for the API project.
-- **Schema error:** inspect the failed job log; update the contract and tests together.
-- **No artifact:** generation must complete and write the JSON file before upload.
+No `OPENAI_API_KEY` secret or `OPENAI_MODEL` variable is required. Do not create either for this project.
