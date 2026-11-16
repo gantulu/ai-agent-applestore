@@ -79,7 +79,7 @@ The agent selects a canonical category, combines the Master Prompt with the matc
 
 GitHub Actions validates JSON configuration, JSON Schemas, and contract tests on pushes and pull requests. CI does not call ChatGPT and requires no AI API secret.
 
-See [architecture](docs/architecture.md), [ChatGPT Project setup](docs/chatgpt-project-setup.md), [output contract](docs/output-contract.md), and [GitHub Actions](docs/github-actions.md).
+See [architecture](docs/architecture.md), [ChatGPT Project setup](docs/chatgpt-project-setup.md), [output contract](docs/output-contract.md), [GitHub Actions](docs/github-actions.md), and the [release and maintenance process](docs/release-process.md).
 
 ## Safety
 
